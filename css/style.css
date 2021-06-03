@@ -1,0 +1,243 @@
+/*******************************************home page*****************************/
+.background {
+	background-image: url(../images/bg3.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+.title{
+	color: #222340;
+	font-family: 'Playfair Display', serif;
+	font-size: 70px;
+}
+.box{
+	
+	width: 600px;
+	height: 500px;
+	margin-left: 250px;	
+	border-radius: 20px;
+	margin-top: 20px;		
+	padding-bottom: 50px;
+	padding-right: 80px;
+	padding-top: 20px;
+
+}
+.space{
+	margin-left: 10px;
+}
+.hr{
+	color: #222340;
+}
+.color{
+	color: #222340;
+}
+
+/***************************************signin form*******************************************/
+.box2{
+	background-color:  #cdcdd1;
+	width: 350px;
+	height: 400px;
+	margin-left: 500px;
+	margin-right: 450px;	
+	border-radius: 20px;
+	margin-top: 100px;		
+	padding-bottom: 50px;
+	padding-right: 80px;
+	padding-top: 20px;
+
+
+}
+.background2 {
+	background-image: url(../images/bg5.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+.font{
+	color: #222340;
+	/*font-family: 'Balsamiq Sans', cursive;*/
+}
+
+/****************************guest form***************************************/
+.margin{
+	margin-left: 100px;
+	margin-right: 400px;
+	background-color:  #cdcdd1;
+	width: 500px;
+	height: 600px;
+	border-radius: 20px;
+	margin-top: 20px;		
+	padding-bottom: 50px;
+	padding-right: 15px;
+	padding-top: 20px;
+}
+.bg{
+	background-image: url(../images/bg5.jpg);
+	
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+/***********************************dashboard**************************/
+.color2{
+	background-color: ;
+}
+.border{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.banner{
+	height: 50px;
+	background-color: #222340;
+}
+
+.banner2{
+	height: 60px;
+	background-color: white;
+	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/******************************search*********************/
+.space{
+	margin-right: 10px;
+}
+/*****nav****/
+.navigate{
+	margin-top: 20px;
+	/*background-color: white;*/
+	height: 500px;
+	width:356px;
+	float: left;
+	
+
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #222340;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 240px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.shadow {
+  width: 250px;
+  
+  text-align: center;
+}
+
+/***************task**************/
+ .task{
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	/*background-color: white;*/
+	height: 500px;
+	width:65%;
+	float: left;
+}
+.notifications{
+	margin-top: 20px;
+	background-color: white;
+	height: 500px;
+	width: 30%;
+	float: left;
+
+}
+.sub_sect{
+	background-color: white;
+	width: 32%;
+	height: 200px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	
+}
+.right{
+	float: left;
+}
+.task2{
+	border-radius: 5px;
+  box-shadow: 0 1px 11px 0 rgba(0, 0, 0, 0.12);
+  border: none;
+  margin-bottom: 30px; 
+  
+}
+/****************meeting request***********/
+.mr{
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+
+}
+.form-div { margin-top: 100px; border: 1px solid #e0e0e0; }
+#profileDisplay { display: block; height: 210px; width: 60%; margin: 0px auto; border-radius: 50%; }
+.img-placeholder {
+  width: 60%;
+  color: white;
+  height: 100%;
+  background: black;
+  opacity: .7;
+  height: 210px;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.img-placeholder h4 {
+  margin-top: 40%;
+  color: white;
+}
+.img-div:hover .img-placeholder {
+  display: block;
+  cursor: pointer;
+}
+.sub_sect2{
+	background-color: white;
+	width: 32%;
+	height: 325px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	border-radius: 5px;
+  box-shadow: 0 1px 11px 0 rgba(0, 0, 0, 0.12);
+  border: none;
+}
+/***************************schedules***************************/
+.schedule{
+	border-radius: 5px;
+  box-shadow: 0 1px 11px 0 rgba(0, 0, 0, 0.12);
+  border: none;
+  margin-bottom: 30px;
+}
