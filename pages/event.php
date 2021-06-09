@@ -11,8 +11,11 @@ $resultset = mysqli_query($con, $sqlEvents) or die("database error:". mysqli_err
 $calendar = array();
 while( $rows = mysqli_fetch_assoc($resultset) ) {	
 	// convert  date to milliseconds
-	$start = strtotime($rows['startTime']) * 1000;
-	$end = strtotime($rows['deadline']) * 1000;	
+	/*$start = strtotime($rows['startTime']) * 1000;
+	$end = strtotime($rows['deadline']) * 1000;*/
+
+    $start = $rows['startTime'];
+    $end = $rows['deadline'];	
 	$calendar[] = array(
         'id' =>$rows['taskid'],
         'title' => $rows['title'],
@@ -22,8 +25,8 @@ while( $rows = mysqli_fetch_assoc($resultset) ) {
         'end' => "$end"
     );
 }
-$calendarData = array(
+/*$calendarData = array(
 	"success" => 1,	
-    "result"=>$calendar);
-echo json_encode($calendarData);
+    "result"=>$calendar);*/
+echo json_encode($calendar);
 ?>

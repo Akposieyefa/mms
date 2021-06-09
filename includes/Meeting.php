@@ -35,6 +35,30 @@ class Meeting
 		return $this->pdo->preparedStatement($sql, $args)->fetchAll();
 	}
 
+	public function countMeetings($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args);
+	}
+
+	public function countUpcomingMeetings($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchColumn();
+	}
+
+	public function countCompletedMeetings($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchColumn();
+	}
+
+	public function countCancelledMeetings($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchColumn();
+	}
+
+	public function fetchmeetingRequest($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchAll();
+	}
+
+	public function countmeetingRequest($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchColumn();
+	}
+
 	public function meetingRequest($post){
 		$pdo = new Connection;
 		$mail = new PHPMailer();
@@ -194,12 +218,20 @@ class Meeting
 			$stmt = $this->pdo->preparedStatement("SELECT COUNT(*) FROM `meetings` WHERE `meetingDate`='$date'");
 			if($stmt->fetchColumn() < 1){
 
-			$this->pdo->preparedStatement("INSERT INTO `meetings` (`subject`, `agenda`, `meetingTypeId`, `attendee`, `greetingText`, `venue`, `meetingDate`, `meetingTime`, `isActive`, `createdBy`) VALUES ('$subjectOfMeeting','$agenda','$typeOfMeeting','$attendess','$greetingtxt','$venue','$date','$time','1','{$_SESSION['userType']}') ");
+			$this->pdo->preparedStatement("INSERT INTO `meetings` (`subject`, `agenda`, `meetingTypeId`, `greetingText`, `venue`, `meetingDate`, `meetingTime`, `status`, `createdBy`) VALUES ('$subjectOfMeeting','$agenda','$typeOfMeeting','$greetingtxt','$venue','$date','$time','upcoming','{$_SESSION['userType']}') ");
 
-			if($attendess == 'staff'):
+			if($typeOfMeeting == '1'):
+				//faculty meeting, send mail to staff
 				$results = $this->pdo->preparedStatement("SELECT email, name FROM users WHERE memberType='2'")->fetchAll();
-			elseif($attendess == 'students'):
-				$results = $this->pdo->preparedStatement("SELECT email, name FROM users WHERE memberType='4'")->fetchAll();
+			elseif($typeOfMeeting == '2'):
+				//Department meeting, send mail to staff
+				$results = $this->pdo->preparedStatement("SELECT email, name FROM users WHERE memberType='2'")->fetchAll();
+			elseif($typeOfMeeting == '3'):
+				//Staff meeting, send mail to staff
+				$results = $this->pdo->preparedStatement("SELECT email, name FROM users WHERE memberType='2'")->fetchAll();
+			elseif($typeOfMeeting == '4'):
+				//staff and student meeting, send mail to staff
+				$results = $this->pdo->preparedStatement("SELECT email, name FROM users WHERE memberType='2' OR memberType='4'")->fetchAll();
 			else:
 				$results = $this->pdo->preparedStatement("SELECT email, name FROM users")->fetchAll();
 			endif;

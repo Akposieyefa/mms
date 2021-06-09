@@ -71,6 +71,33 @@ class Users
 				
 	}
 
+	public function AuthenticateUsersec($args = NULL){
+		$stmt = $this->pdo->preparedStatement("SELECT * FROM `users` WHERE `email`=? AND `memberType`='3' LIMIT 1", $args);
+		$row_count = $stmt->rowCount();//get the number of count
+		 if ($row_count == 1){
+	 		if ($found_user = $stmt->fetch()) {
+	 			//$session = new Session;
+			 	$_SESSION['userId'] 	 = $found_user->id;
+	            $_SESSION['userName']    = $found_user->name;
+	            $_SESSION['userEmail']= $found_user->email;
+	            $_SESSION['userType']    = ($found_user->memberType == '3') ? "Secretary" : "Null";
+
+	            //create a cryptographically secure token.
+	            $userToken = bin2hex(openssl_random_pseudo_bytes(24));
+	             
+	            //assign the token to a session variable.
+	            $_SESSION['user_token'] = $userToken;
+			 	return true;
+		 	}
+		 else{
+		 	return false;
+		 } 
+		}else{
+			return false;
+		}	
+				
+	}
+
 	public function AuthenticateUserStudent($args = NULL){
 		$stmt = $this->pdo->preparedStatement("SELECT * FROM `users` WHERE `email`=? AND `memberType`='4' LIMIT 1", $args);
 		$row_count = $stmt->rowCount();//get the number of count
@@ -133,7 +160,7 @@ class Users
 
 	public function update($sql, $args = NULL) 
 	{
-		$this->pdo->preparedStatement($sql, $args)->lastInsertedId();
+		$this->pdo->preparedStatement($sql, $args);
 	}
 	public function delete($sql, $args = NULL) 
 	{

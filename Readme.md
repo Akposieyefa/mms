@@ -16,6 +16,7 @@ Use the "Login" link to login as staff or student.
 
 Default student - 'boblewisu@gmail.com' pass - '1234567890'.
 Default staff - 'annettedixon367@gmail.com' pass - '1234567890'
+Default secretary - 'secretary@gmail.com' pass - '1234567890'
 
 # How to Use
 
@@ -26,3 +27,9 @@ Default staff - 'annettedixon367@gmail.com' pass - '1234567890'
 5. Staff and Admin can assign task to users(student).
 6. All users can view their task, and submit task once done. Submitte task cannot be reversed.
 
+# Members Type
+There are `4` users in system: 
+1. An Admin user membertype is `1`
+2. Staff user membertype is `2`
+3. Secretary user membertype is `3`
+4. Student user membertype is `4`

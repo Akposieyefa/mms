@@ -1,4 +1,4 @@
-<?php require_once("../config/initialize.php"); ?>
+<?php require_once("../../config/initialize.php"); ?>
 <?php
 //Import custom Mailer classe into the global namespace
 use app\config\Connection;
@@ -11,7 +11,7 @@ $functions = new Functions;
 $pdo = new Connection;
 
 if(empty($_SESSION["user_token"])) {
-  $functions->redirect_to("admin.php");
+  $functions->redirect_to("../secretary.php");
 } else {
 
   if(isset($_REQUEST['token'])){
@@ -20,7 +20,7 @@ if(empty($_SESSION["user_token"])) {
     $loggedout = $session->logout($token, $queryStrToken);
 
     if ($loggedout) {
-      $functions->redirect_to("admin.php");
+      $functions->redirect_to("../secretary.php");
     }
   }
 
@@ -148,12 +148,12 @@ if(empty($_SESSION["user_token"])) {
                      </a>
                      <ul class="show-notification profile-notification">
                         <li>
-                           <a href="admin_setting.php">
+                           <a href="setting.php">
                            <i class="ti-settings"></i> Settings
                            </a>
                         </li>
                         <li>
-                           <a href="admin_profile.php">
+                           <a href="profile.php">
                            <i class="ti-user"></i> Profile
                            </a>
                         </li>
@@ -170,7 +170,7 @@ if(empty($_SESSION["user_token"])) {
       </nav>
       <div class="pcoded-main-container">
          <div class="pcoded-wrapper">
-            <?php include "admin_nav.php"; ?>
+            <?php include "sec_nav.php"; ?>
 <div class="pcoded-content">
 <div class="pcoded-inner-content">
 <div class="main-body">

@@ -143,92 +143,7 @@ if(empty($_SESSION["user_token"])) {
       </nav>
       <div class="pcoded-main-container">
          <div class="pcoded-wrapper">
-            <nav class="pcoded-navbar">
-               <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-               <div class="pcoded-inner-navbar main-menu">
-                  <div class="">
-                     <div class="main-menu-header">
-                        <img class="img-40 img-radius" src="../images/avatar.jpg" alt="User-Profile-Image">
-                        <div class="user-details">
-                           <span></span>
-                           <span id="more-details"><i class="ti-angle-down"></i></span>
-                        </div>
-                     </div>
-                     <div class="main-menu-content">
-                        <ul>
-                           <li class="more-details">
-                              <a href="admin_profile.php"><i class="ti-user"></i>View Profile</a>
-                              <a href="admin_setting.php"><i class="ti-settings"></i>Settings</a>
-                              <a href="?token=<?php echo $_SESSION['user_token']; ?>"><i class="ti-layout-sidebar-left"></i>Logout</a>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="pcoded-search">
-                     <span class="searchbar-toggle">  </span>
-                     <div class="pcoded-search-box ">
-                        <input type="text" placeholder="Search">
-                        <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
-                     </div>
-                  </div>
-                  <ul class="pcoded-item pcoded-left-item">
-                  <li class="active">
-                     <a href="admin_dash.php">
-                     <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li class="">
-                     <a href="admin_task.php">
-                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
-                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Task</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  <li>
-                     <a href="admin_meetings.php">
-                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Meetings</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="admin_schedules.php">
-                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Schedules</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li class="pcoded-hasmenu">
-                     <a href="javascript:void(0)">
-                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Manage Users</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                     <ul class="pcoded-submenu">
-                  <li class=" ">
-                     <a href="admin_manage_student.php">
-                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Students</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li class=" ">
-                     <a href="admin_manage_staff.php">
-                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Staff</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="admin_manage_secretary.php">
-                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Secretary</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-               </div>
-            </nav>
+            <?php include "admin_nav.php"; ?>
             <div class="pcoded-content">
                <div class="pcoded-inner-content">
                   <div class="main-body">
@@ -237,48 +152,6 @@ if(empty($_SESSION["user_token"])) {
                            <div class="row">
                               <!-- card1 start -->
                               <!-- Statestics Start -->
-                              <div class="col-md-12 col-xl-8">
-                                 <div class="card">
-                                    <div class="card-header">
-                                       <h4>List of Tasks</h4>
-                                       <div class="card-header-left "></div>
-                                       <form method="post" action="stud_dashboard.php">
-                                       <table class="table">
-                                       <thead>
-                                          <tr>
-                                             <th scope="col"></th>
-                                             <th scope="col">task</th>
-                                             <th scope="col">status</th>
-                                             <?php
-                                             
-                                             $pdo = new Connection;
-                                             $tasks = new Tasks($pdo);
-
-                                             $res = $tasks->allTasks("SELECT * FROM  listtask ORDER BY taskid DESC");
-
-                                                // output data of each row
-                                                foreach($res as $result) {
-                                                echo "<tr><td>" . $result->taskid. "</td><td>" . $result->title . "</td><td>"
-                                                . $result->status. "</td></tr>";
-                                                }
-                                                echo "</table>";
-                                                ?>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-12 col-xl-4 ">
-                                 <div class="card fb-card">
-                                 <div class="card-header">
-                                 <div class="d-inline-block">
-                                 <h5>Reminders</h5>
-                                 </div>
-                                 </div>
-                                 <div class="card-block text-center">
-                                 <div class="row">
-                                 </div>
-                                 </div>
-                                 </div>
-                                 </div>
-                              </div>
                            </div>
                            <div id="styleSelector">
                            </div>
@@ -289,7 +162,7 @@ if(empty($_SESSION["user_token"])) {
             </div>
          </div>
       </div>
-      -->
+
       <!-- Required Jquery -->
       <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
       <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>

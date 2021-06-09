@@ -1,4 +1,4 @@
-<?php require_once("../config/initialize.php"); ?>
+<?php require_once("../../config/initialize.php"); ?>
 <?php
 //Import custom Mailer classe into the global namespace
 use app\config\Connection;
@@ -11,7 +11,7 @@ $functions = new Functions;
 $pdo = new Connection;
 
 if(empty($_SESSION["user_token"])) {
-  $functions->redirect_to("admin.php");
+  $functions->redirect_to("../staff.php");
 } else {
 
   if(isset($_REQUEST['token'])){
@@ -20,7 +20,7 @@ if(empty($_SESSION["user_token"])) {
     $loggedout = $session->logout($token, $queryStrToken);
 
     if ($loggedout) {
-      $functions->redirect_to("admin.php");
+      $functions->redirect_to("../staff.php");
     }
   }
 
@@ -61,6 +61,9 @@ if(empty($_SESSION["user_token"])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+
+
+<link rel="stylesheet" href="../assets/css/calendar.css">
 </head>
 
 <body>
@@ -148,12 +151,12 @@ if(empty($_SESSION["user_token"])) {
                      </a>
                      <ul class="show-notification profile-notification">
                         <li>
-                           <a href="admin_setting.php">
+                           <a href="setting.php">
                            <i class="ti-settings"></i> Settings
                            </a>
                         </li>
                         <li>
-                           <a href="admin_profile.php">
+                           <a href="profile.php">
                            <i class="ti-user"></i> Profile
                            </a>
                         </li>
@@ -170,7 +173,7 @@ if(empty($_SESSION["user_token"])) {
       </nav>
       <div class="pcoded-main-container">
          <div class="pcoded-wrapper">
-            <?php include "admin_nav.php"; ?>
+            <?php include "nav.php"; ?>
 <div class="pcoded-content">
 <div class="pcoded-inner-content">
 <div class="main-body">
@@ -274,25 +277,15 @@ if(empty($_SESSION["user_token"])) {
        
           calendar.createSchedules([
             {
-                  id: '1',
-                  calendarId: '1',
-                  title: 'my schedule',
-                  category: 'time',
-                  dueDateClass: '',
-                  start: '2021-06-01',
-                  end: '2021-06-08',
-                  isReadOnly: true
-              },
-              {
-                  id: '2',
-                  calendarId: '1',
-                  title: 'second schedule',
-                  category: 'time',
-                  dueDateClass: '',
-                  start: '2021-06-09',
-                  end: '2021-07-08',
-                  isReadOnly: true    // schedule is read-only
-                      }
+                id: res[0].id,
+                calendarId: '1',
+                title: res[0].title,
+                category: 'time',
+                dueDateClass: '',
+                start: res[0].start,
+                end: res[0].end,
+                isReadOnly: true
+            }
           ]);
 
     }

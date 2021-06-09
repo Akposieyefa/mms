@@ -25,7 +25,7 @@
 
 
 <hr>
-<a href="pages/guest.php" class="color">login as guest</a>
+<a href="pages/secretary.php" class="color">login as secretary</a>
 
 </span>
 </div>	

@@ -1,4 +1,4 @@
-<?php require_once("../config/initialize.php"); 
+<?php require_once("../../config/initialize.php"); 
 use app\config\Connection;
 use app\config\Functions;
 use app\config\Session;
@@ -11,7 +11,7 @@ $users = new Users($pdo);
 $user = $users->singleUser([$_SESSION['userId']]);
 
 if(empty($_SESSION["user_token"])) {
-  $functions->redirect_to("admin.php");
+  $functions->redirect_to("../secretary.php");
 } else {
 
   if(isset($_REQUEST['token'])){
@@ -20,7 +20,7 @@ if(empty($_SESSION["user_token"])) {
     $loggedout = $session->logout($token, $queryStrToken);
 
     if ($loggedout) {
-      $functions->redirect_to("admin.php");
+      $functions->redirect_to("../secretary.php");
     }
   }
 
@@ -40,16 +40,16 @@ if(empty($_SESSION["user_token"])) {
       <!-- Google font-->
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
       <!-- Required Fremwork -->
-      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap/css/bootstrap.min.css">
       <!-- themify-icons line icon -->
-      <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+      <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css">
       <!-- ico font -->
-      <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
+      <link rel="stylesheet" type="text/css" href="../assets/icon/icofont/css/icofont.css">
       <!-- Style.css -->
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-      <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
-      <link rel="stylesheet" type="text/css" href="../css/style.css">
+      <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+      <link rel="stylesheet" type="text/css" href="../assets/css/jquery.mCustomScrollbar.css">
+      <link rel="stylesheet" type="text/css" href="../../css/style.css">
   </head>
 
   <body>
@@ -92,7 +92,7 @@ if(empty($_SESSION["user_token"])) {
                         </li>
                         <li>
                            <div class="media">
-                              <img class="d-flex align-self-center img-radius" src="../images/avatar.jpg" alt="Generic placeholder image">
+                              <img class="d-flex align-self-center img-radius" src="../../images/avatar.jpg" alt="Generic placeholder image">
                               <div class="media-body">
                                  <h5 class="notification-user"></h5>
                                  <p class="notification-msg"></p>
@@ -102,7 +102,7 @@ if(empty($_SESSION["user_token"])) {
                         </li>
                         <li>
                            <div class="media">
-                              <img class="d-flex align-self-center img-radius" src="../images/avatar.jpg" alt="Generic placeholder image">
+                              <img class="d-flex align-self-center img-radius" src="../../images/avatar.jpg" alt="Generic placeholder image">
                               <div class="media-body">
                                  <h5 class="notification-user">Joseph William</h5>
                                  <p class="notification-msg"></p>
@@ -112,7 +112,7 @@ if(empty($_SESSION["user_token"])) {
                         </li>
                         <li>
                            <div class="media">
-                              <img class="d-flex align-self-center img-radius" src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                              <img class="d-flex align-self-center img-radius" src="../assets/images/avatar-4.jpg" alt="Generic placeholder image">
                               <div class="media-body">
                                  <h5 class="notification-user">Sara Soudein</h5>
                                  <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -124,18 +124,18 @@ if(empty($_SESSION["user_token"])) {
                   </li>
                   <li class="user-profile header-notification">
                      <a href="#!">
-                     <img src="../images/avatar.jpg" class="img-radius" alt="User-Profile-Image">
+                     <img src="../../images/avatar.jpg" class="img-radius" alt="User-Profile-Image">
                      <span></span>
                      <i class="ti-angle-down"></i>
                      </a>
                      <ul class="show-notification profile-notification">
                         <li>
-                           <a href="admin_setting.php">
+                           <a href="setting.php">
                            <i class="ti-settings"></i> Settings
                            </a>
                         </li>
                         <li>
-                           <a href="admin_profile.php">
+                           <a href="profile.php">
                            <i class="ti-user"></i> Profile
                            </a>
                         </li>
@@ -152,7 +152,7 @@ if(empty($_SESSION["user_token"])) {
       </nav>
       <div class="pcoded-main-container">
          <div class="pcoded-wrapper">
-            <?php include "admin_nav.php"; ?>
+            <?php include "sec_nav.php"; ?>
 
 <div class="pcoded-content">
   <?php ?>
@@ -167,10 +167,10 @@ if(empty($_SESSION["user_token"])) {
           <div class="card">
            <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                    <img src="<?php echo (!empty($user->picture)) ? '../images/'.$user->picture : '../images/avatar.jpg'; ?>" class="rounded-circle" width="150">
+                    <img src="<?php echo (!empty($user->picture)) ? '../../images/'.$user->picture : '../../images/avatar.jpg'; ?>" class="rounded-circle" width="150">
                   <div class="mt-3">
                       <h4><?php echo $user->name; ?></h4>
-                      <p class="text-secondary mb-1">Administrator</p>
+                      <p class="text-secondary mb-1">Secretary</p>
                       <p class="text-muted font-size-sm">Meeting Management System</p>
                       <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button>
@@ -207,7 +207,7 @@ if(empty($_SESSION["user_token"])) {
                 <h6 class="mb-0">Member Type</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <?php echo $user->memberType; ?>
+                <?php echo ($user->memberType == '3') ? 'Secretary' : ''; ?>
               </div>
             </div>
               <hr>
@@ -231,26 +231,26 @@ if(empty($_SESSION["user_token"])) {
 </div>
                                            
 <!-- Required Jquery -->
-<script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../assets/js/popper.js/popper.min.js"></script>
+<script type="text/javascript" src="../assets/js/bootstrap/js/bootstrap.min.js"></script>
 <!-- jquery slimscroll js -->
-<script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="../assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 <!-- modernizr js -->
-<script type="text/javascript" src="assets/js/modernizr/modernizr.js"></script>
+<script type="text/javascript" src="../assets/js/modernizr/modernizr.js"></script>
 <!-- am chart -->
-<script src="assets/pages/widget/amchart/amcharts.min.js"></script>
-<script src="assets/pages/widget/amchart/serial.min.js"></script>
+<script src="../assets/pages/widget/amchart/amcharts.min.js"></script>
+<script src="../assets/pages/widget/amchart/serial.min.js"></script>
 <!-- Todo js -->
-<script type="text/javascript " src="assets/pages/todo/todo.js "></script>
+<script type="text/javascript " src="../assets/pages/todo/todo.js "></script>
 <!-- Custom js -->
-<script type="text/javascript" src="assets/pages/dashboard/custom-dashboard.js"></script>
-<script type="text/javascript" src="assets/js/script.js"></script>
-<script type="text/javascript " src="assets/js/SmoothScroll.js"></script>
-<script src="assets/js/pcoded.min.js"></script>
-<script src="assets/js/demo-12.js"></script>
-<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="../assets/pages/dashboard/custom-dashboard.js"></script>
+<script type="text/javascript" src="../assets/js/script.js"></script>
+<script type="text/javascript " src="../assets/js/SmoothScroll.js"></script>
+<script src="../assets/js/pcoded.min.js"></script>
+<script src="../assets/js/demo-12.js"></script>
+<script src="../assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script>
 var $window = $(window);
 var nav = $('.fixed-button');
@@ -264,7 +264,7 @@ var nav = $('.fixed-button');
  });
 
 </script>
-<script type="../js/script.js"></script>
+<script type="../../js/script.js"></script>
 </body>
 
 </html>

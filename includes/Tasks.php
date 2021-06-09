@@ -17,6 +17,14 @@ class Tasks
     	$this->pdo = $pdo;
   	}
 
+  	public function countTasks($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchColumn();
+	}
+
+	public function countCompletedTasks($sql, $args=NULL){
+		return $this->pdo->preparedStatement($sql, $args)->fetchColumn();
+	}
+
 	public function allTasks($sql, $args=NULL){
 		return $this->pdo->preparedStatement($sql, $args)->fetchAll();
 	}

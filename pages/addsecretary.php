@@ -30,7 +30,6 @@ if(empty($_SESSION["user_token"])) {
 		$staff_name=$_POST['staff_fname'].' '.$_POST['staff_lname'];
 		$staffphone=$_POST['staffphone'];
 		$staffdept= $_POST['staffdept'];
-		$position= $_POST['position'];
 		$staffemail=$_POST['staffemail'];
 		$staffpassword=$_POST['staffpassword'];
 		$jobtype=$_POST['jobtype'];
@@ -42,7 +41,7 @@ if(empty($_SESSION["user_token"])) {
 			$session->message("Error: Email Already exist.", "error");
 		}else {
 
-			$sql = $users->create("INSERT INTO users (`name`, `phone`, `department`, `position`, `email`, `password`, `jobtype`, `memberType`, `isActive`, `createdBy`) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [$staff_name, $staffphone, $staffdept, $position, $staffemail, $staffpassword, $jobtype, '3', '1', 'Admin']);
+			$sql = $users->create("INSERT INTO users (`name`, `phone`, `department`, `email`, `password`, `jobtype`, `memberType`, `isActive`, `createdBy`) VALUES (?,?,?,?,?,?,?,?,?)", [$staff_name, $staffphone, $staffdept, $staffemail, $staffpassword, $jobtype, '3', '1', 'Admin']);
 			$session->message("New record successfully inserted", "success");
 		}
 
@@ -186,92 +185,7 @@ if(empty($_SESSION["user_token"])) {
       </nav>
       <div class="pcoded-main-container">
          <div class="pcoded-wrapper">
-            <nav class="pcoded-navbar">
-               <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-               <div class="pcoded-inner-navbar main-menu">
-                  <div class="">
-                     <div class="main-menu-header">
-                        <img class="img-40 img-radius" src="../images/avatar.jpg" alt="User-Profile-Image">
-                        <div class="user-details">
-                           <span></span>
-                           <span id="more-details"><i class="ti-angle-down"></i></span>
-                        </div>
-                     </div>
-                     <div class="main-menu-content">
-                        <ul>
-                           <li class="more-details">
-                              <a href="admin_profile.php"><i class="ti-user"></i>View Profile</a>
-                              <a href="admin_setting.php"><i class="ti-settings"></i>Settings</a>
-                              <a href="?token=<?php echo $_SESSION['user_token']; ?>"><i class="ti-layout-sidebar-left"></i>Logout</a>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="pcoded-search">
-                     <span class="searchbar-toggle">  </span>
-                     <div class="pcoded-search-box ">
-                        <input type="text" placeholder="Search">
-                        <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
-                     </div>
-                  </div>
-                  <ul class="pcoded-item pcoded-left-item">
-                  <li class="">
-                     <a href="admin_dash.php">
-                     <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li class="">
-                     <a href="admin_task.php">
-                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
-                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Task</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  <li>
-                     <a href="admin_meetings.php">
-                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Meetings</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="admin_schedules.php">
-                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Schedules</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li class="pcoded-hasmenu active">
-                     <a href="javascript:void(0)">
-                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Manage Users</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                     <ul class="pcoded-submenu">
-                  <li class=" ">
-                     <a href="admin_manage_student.php">
-                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Students</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li class=" ">
-                     <a href="admin_manage_staff.php">
-                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                     <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Staff</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="admin_manage_secretary.php">
-                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Secretary</span>
-                     <span class="pcoded-mcaret"></span>
-                     </a>
-                  </li>
-               </div>
-            </nav>
+            <?php include "admin_nav.php"; ?>
 <div class="pcoded-content">
 <div class="pcoded-inner-content">
 <div class="main-body">
@@ -279,11 +193,14 @@ if(empty($_SESSION["user_token"])) {
 
 <div class="page-body">
 <div class="row">
+   <div class="col-sm-12">
+      <?php echo $session->check_message(); ?>
+    </div>
 <!-- card1 start -->
 <!-- Statestics Start -->
 <body class="form-v4 card">
 		<div class="form-v4-content">
-			<form class="form-detail" action="addstaff.php" method="post">
+			<form class="form-detail" action="addsecretary.php" method="post">
 				<div class="form-group color">
 					<div class="form-row form-row-1 ">
 						<label for="first_name">First Name</label>
@@ -300,20 +217,14 @@ if(empty($_SESSION["user_token"])) {
 				</div>
 				<div class="form-group">
 					<div class="form-row form-row-1">
-						<label for="last_name">Depatment</label>
+						<label for="last_name">Department</label>
 						<input type="text" name="staffdept" id="staffdept" class="input-text">
 					</div>
 				<div class="form-row form-row-1">
-						<label for="last_name">Position</label>
-						<input type="text" name="position" id="
-						position" class="input-text">
+               <label for="last_name">Jobtype</label>
+               <input type="text" name="jobtype" id="jobtype" class="input-text" value="secretary" readonly>
+            </div>
 				</div>
-				</div>
-				<div class="form-row form-row-1">
-						<label for="last_name">Jobtype</label>
-						<input type="text" name="jobtype" id="jobtype" class="input-text">
-					</div>
-					
 				<div class="form-row">
 					<label for="your_email">Email Address</label>
 					<input type="text" name="staffemail" id="staffemail" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">

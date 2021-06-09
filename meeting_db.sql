@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 10:37 PM
+-- Generation Time: Jun 07, 2021 at 12:36 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -105,13 +105,12 @@ CREATE TABLE `meetings` (
   `subject` varchar(255) NOT NULL,
   `agenda` text NOT NULL,
   `meetingTypeId` int(11) NOT NULL,
-  `attendee` varchar(255) NOT NULL,
   `greetingText` varchar(255) NOT NULL,
   `venue` varchar(255) NOT NULL,
   `meetingDate` date DEFAULT NULL,
   `meetingTime` time DEFAULT NULL,
   `minutesOfMeeting` varchar(255) DEFAULT NULL,
-  `isActive` tinyint(1) NOT NULL,
+  `status` varchar(255) NOT NULL,
   `createdBy` varchar(255) DEFAULT NULL,
   `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedBy` varchar(255) DEFAULT NULL,
@@ -122,8 +121,9 @@ CREATE TABLE `meetings` (
 -- Dumping data for table `meetings`
 --
 
-INSERT INTO `meetings` (`id`, `subject`, `agenda`, `meetingTypeId`, `attendee`, `greetingText`, `venue`, `meetingDate`, `meetingTime`, `minutesOfMeeting`, `isActive`, `createdBy`, `createdDate`, `updatedBy`, `updatedDate`) VALUES
-(2, 'Course Allocation', 'i. New course allocation.\r\nii. Course registration', 4, 'students', 'Hello, welcome to another staff, student meeting', 'Hall 1', '2021-05-30', '09:30:00', 'sample.txt', 1, 'Admin', '2021-05-28 07:19:49', NULL, '2021-05-31 11:00:44');
+INSERT INTO `meetings` (`id`, `subject`, `agenda`, `meetingTypeId`, `greetingText`, `venue`, `meetingDate`, `meetingTime`, `minutesOfMeeting`, `status`, `createdBy`, `createdDate`, `updatedBy`, `updatedDate`) VALUES
+(2, 'Course Allocation', 'i. New course allocation.\r\nii. Course registration', 4, 'Hello, welcome to another staff, student meeting', 'Hall 1', '2021-06-08', '09:30:00', 'sample.txt', 'upcoming', 'Admin', '2021-05-28 07:19:49', NULL, '2021-06-06 22:18:14'),
+(3, 'Course Allocation', 'dshdghs\r\nasnsds', 1, 'Hello, welcome to another faculty meeting', 'Hall 2', '2021-06-25', '09:45:00', NULL, 'completed', 'Secretary', '2021-06-06 21:45:08', NULL, '2021-06-06 22:36:09');
 
 -- --------------------------------------------------------
 
@@ -199,8 +199,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `phone`, `department`, `position`, `jobtype`, `level`, `email`, `gender`, `registerationId`, `password`, `picture`, `memberType`, `isActive`, `createdBy`, `createdOn`, `updatedOn`) VALUES
 (1, 'Admin', NULL, NULL, NULL, NULL, NULL, 'hassan.abdulrahman3333@gmail.com', '', NULL, '', '1621889053-81081479_1208700802653195_905764961563705344_n.jpg', 'Admin', 1, 'Webmaster', '2021-05-22 16:00:37', '2021-05-28 06:15:18'),
-(5, 'Lewis Uzoma', '08148591503', 'Computer Science', NULL, NULL, '400', 'boblewisu@gmail.com', 'male', '3234CM', 'LumoNR0pB&jmm32#HI', NULL, '4', 1, 'Admin', '2021-05-25 20:02:50', '2021-05-25 23:21:02'),
-(6, 'John Doe', '2323', 'Computer Science', 'Departmental Lecturer', 'Lecturer', NULL, 'annettedixon367@gmail.com', NULL, NULL, 'LumoNR0pB&jmm32#HI', NULL, '2', 1, 'Admin', '2021-05-28 21:44:38', '2021-05-29 15:20:53');
+(5, 'Lewis Uzoma', '08148591503', 'Computer Science', NULL, NULL, '400', 'boblewisu@gmail.com', 'male', '3234CM', 'LumoNR0pB&jmm32#HI', '1623051649-bb 022.jpg', '4', 1, 'Admin', '2021-05-25 20:02:50', '2021-06-07 08:40:49'),
+(6, 'John Doe', '2323', 'Computer Science', 'Departmental Lecturer', 'Lecturer', NULL, 'annettedixon367@gmail.com', NULL, NULL, 'LumoNR0pB&jmm32#HI', NULL, '2', 1, 'Admin', '2021-05-28 21:44:38', '2021-06-06 15:28:59'),
+(7, 'John Doe', '2323', 'Computer Science', NULL, 'secretary', NULL, 'secretary@gmail.com', NULL, NULL, '1234567890', NULL, '3', 1, 'Admin', '2021-06-06 14:46:46', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -260,7 +261,7 @@ ALTER TABLE `meetingrequest`
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `meetingtype`
 --
@@ -275,7 +276,7 @@ ALTER TABLE `membertype`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

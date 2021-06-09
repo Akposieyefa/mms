@@ -11,7 +11,7 @@ $session = new Session;
 $functions = new Functions;
 
 if(!empty($_SESSION["user_token"])) {
-	$functions->redirect_to("staff/index.php");
+	$functions->redirect_to("secretary/index.php");
 } else {
 	$pdo = new Connection;
 	$user = new Users($pdo);
@@ -21,8 +21,8 @@ if(!empty($_SESSION["user_token"])) {
 	$staffemail = $_POST['staffemail'];
 	$staffpassword = $_POST['staffpassword'];
 
-		if($user->AuthenticateUserstaff([$staffemail])){
-			$functions->redirect_to("staff/index.php");
+		if($user->AuthenticateUsersec([$staffemail])){
+			$functions->redirect_to("secretary/index.php");
 		}else{
 			$session->message("Error: Invalid Login Details.", "error");
 		}	
@@ -46,7 +46,7 @@ if(!empty($_SESSION["user_token"])) {
 <body class=" background2">
 	
 
-<form method="post" action="staff.php" class="box2 font">
+<form method="post" action="secretary.php" class="box2 font">
 	<div style="margin-left: 40px;" class="col"><?php echo $session->check_message(); ?>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
@@ -60,7 +60,7 @@ if(!empty($_SESSION["user_token"])) {
 
   <button type="submit" class="btn btn-primary" name="submit" value="login">login</button>
   <hr>
-  <a href="student.php">login as student</a>
+  <a href="../index.php">Back</a>
   <br>
 <a href="#forgotpassword.php">forgot password</a>
 
